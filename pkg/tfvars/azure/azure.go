@@ -10,10 +10,9 @@ import (
 
 	"github.com/openshift/installer/pkg/types"
 	"github.com/openshift/installer/pkg/types/azure"
-	"github.com/openshift/installer/pkg/types/azure/defaults"
 )
 
-// Auth is the collection of credentials that will be used by terrform.
+// Auth is the collection of credentials that will be used by terraform.
 type Auth struct {
 	SubscriptionID string `json:"azure_subscription_id,omitempty"`
 	ClientID       string `json:"azure_client_id,omitempty"`
@@ -55,6 +54,7 @@ type TFVarsSources struct {
 	PreexistingNetwork          bool
 	Publish                     types.PublishingStrategy
 	OutboundType                azure.OutboundType
+	DefaultMachinePlatform      *azure.MachinePool
 }
 
 // TFVars generates Azure-specific Terraform variables launching the cluster.
