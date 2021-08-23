@@ -33,6 +33,11 @@ variable "ignition" {
   description = "The content of the bootstrap ignition file."
 }
 
+variable "ignition_bootstrap_file" {
+  type = string
+  description = "The path to bootstrap ignition file."
+}
+
 variable "subnet_id" {
   type        = string
   description = "The subnet ID for the bootstrap node."
