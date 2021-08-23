@@ -14,10 +14,10 @@ locals {
 provider "azurerm" {
   features {}
   subscription_id = var.azure_subscription_id
-#  client_id       = var.azure_client_id
-#  client_secret   = var.azure_client_secret
-  tenant_id       = var.azure_tenant_id
-  environment     = var.azure_environment
+  #  client_id       = var.azure_client_id
+  #  client_secret   = var.azure_client_secret
+  tenant_id   = var.azure_tenant_id
+  environment = var.azure_environment
 }
 
 provider "azureprivatedns" {
@@ -29,24 +29,25 @@ provider "azureprivatedns" {
 }
 
 module "bootstrap" {
-  source                 = "./bootstrap"
-  resource_group_name    = data.azurerm_resource_group.main.name
-  region                 = var.azure_region
-  vm_size                = var.azure_bootstrap_vm_type
-  vm_image               = azurerm_image.cluster.id
-  identity               = azurerm_user_assigned_identity.main.id
-  cluster_id             = var.cluster_id
-  ignition               = var.ignition_bootstrap
-  subnet_id              = module.vnet.master_subnet_id
-  elb_backend_pool_v4_id = module.vnet.public_lb_backend_pool_v4_id
-  elb_backend_pool_v6_id = module.vnet.public_lb_backend_pool_v6_id
-  ilb_backend_pool_v4_id = module.vnet.internal_lb_backend_pool_v4_id
-  ilb_backend_pool_v6_id = module.vnet.internal_lb_backend_pool_v6_id
-  tags                   = local.tags
-  storage_account        = azurerm_storage_account.cluster
-  nsg_name               = module.vnet.cluster_nsg_name
-  private                = module.vnet.private
-  outbound_udr           = var.azure_outbound_user_defined_routing
+  source                  = "./bootstrap"
+  resource_group_name     = data.azurerm_resource_group.main.name
+  region                  = var.azure_region
+  vm_size                 = var.azure_bootstrap_vm_type
+  vm_image                = azurerm_image.cluster.id
+  identity                = azurerm_user_assigned_identity.main.id
+  cluster_id              = var.cluster_id
+  ignition                = var.ignition_bootstrap
+  ignition_bootstrap_file = var.ignition_bootstrap_file
+  subnet_id               = module.vnet.master_subnet_id
+  elb_backend_pool_v4_id  = module.vnet.public_lb_backend_pool_v4_id
+  elb_backend_pool_v6_id  = module.vnet.public_lb_backend_pool_v6_id
+  ilb_backend_pool_v4_id  = module.vnet.internal_lb_backend_pool_v4_id
+  ilb_backend_pool_v6_id  = module.vnet.internal_lb_backend_pool_v6_id
+  tags                    = local.tags
+  storage_account         = azurerm_storage_account.cluster
+  nsg_name                = module.vnet.cluster_nsg_name
+  private                 = module.vnet.private
+  outbound_udr            = var.azure_outbound_user_defined_routing
 
   use_ipv4 = var.use_ipv4
   use_ipv6 = var.use_ipv6
