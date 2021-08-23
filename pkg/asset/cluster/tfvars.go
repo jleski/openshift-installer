@@ -311,6 +311,7 @@ func (t *TerraformVariables) Generate(parents asset.Parents) error {
 				CloudName:                   installConfig.Config.Azure.CloudName,
 				ResourceGroupName:           installConfig.Config.Azure.ResourceGroupName,
 				BaseDomainResourceGroupName: installConfig.Config.Azure.BaseDomainResourceGroupName,
+				DefaultMachinePlatform:      installConfig.Config.Azure.DefaultMachinePlatform,
 				MasterConfigs:               masterConfigs,
 				WorkerConfigs:               workerConfigs,
 				ImageURL:                    string(*rhcosImage),
