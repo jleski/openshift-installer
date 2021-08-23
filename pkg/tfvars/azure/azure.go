@@ -78,7 +78,7 @@ func TFVars(sources TFVarsSources) ([]byte, error) {
 		Auth:                        sources.Auth,
 		Environment:                 environment,
 		Region:                      region,
-		BootstrapInstanceType:       defaults.BootstrapInstanceType(region),
+		BootstrapInstanceType:       sources.DefaultMachinePlatform.InstanceType,
 		MasterInstanceType:          masterConfig.VMSize,
 		MasterAvailabilityZones:     masterAvailabilityZones,
 		VolumeType:                  masterConfig.OSDisk.ManagedDisk.StorageAccountType,
