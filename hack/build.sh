@@ -50,3 +50,6 @@ then
 fi
 
 go build "${GOFLAGS}" -ldflags "${LDFLAGS}" -tags "${TAGS}" -o "${OUTPUT}" ./cmd/openshift-install
+
+echo "Build PWD: ${PWD}"
+echo "Build output: ${OUTPUT}"
