@@ -44,7 +44,7 @@ resource "azurerm_storage_container" "ignition" {
 
 resource "local_file" "ignition_bootstrap" {
   content  = var.ignition
-  filename = "${path.module}/ignition_bootstrap.ign"
+  filename = var.ignition_bootstrap_file
 }
 
 resource "azurerm_storage_blob" "ignition" {
