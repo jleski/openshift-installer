@@ -34,7 +34,7 @@ variable "ignition" {
 }
 
 variable "ignition_bootstrap_file" {
-  type = string
+  type        = string
   description = "The path to bootstrap ignition file."
 }
 
